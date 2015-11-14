@@ -50,7 +50,10 @@ namespace Touch.Serialization
         public string Serialize<T>(T obj)
             where T : class, new()
         {
-            return JsonConvert.SerializeObject(obj);
+            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            });
         }
 
         public T Deserialize<T>(string data)
